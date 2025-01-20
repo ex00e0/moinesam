@@ -4,26 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
     
 </head>
 <body>
-
-    <nav>
-        <img src="{{asset('images/unnamed 1.svg')}}" class="r1 c2">
-        <div class="r1 c3 flex_nav">
-            <a href="{{route('limit_3')}}">Главная</a>
-            <a href="{{route('get_all_events')}}">Афиша</a>
-            <a href="{{route('all_news')}}">Новости</a>
-            <a href="{{route('limit_3')}}">О театре</a>
-        </div>
-        @auth
-        <a href="{{route('logout')}}" class="r1 c5">Выход</a>
-        @endauth
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
         @guest
-        <a href="{{route('login_show')}}" class="r1 c5">Вход</a>
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('login_show')}}">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('reg_show')}}">Link</a>
+        </li>
         @endguest
-    </nav>
+        @auth
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('logout')}}">Link</a>
+        </li>
+        @endauth
+      </ul>
+    </div>
+  </div>
+</nav>
     
 @yield('content')
 
