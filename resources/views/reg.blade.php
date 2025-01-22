@@ -7,23 +7,23 @@
 @enderror
 
 @error('login')
-<script>alert("{{$message}}");</script>
+<div class="alert alert-danger">{{ $message }}</div>
 @enderror
 
 @error('password')
-<script>alert("{{$message}}");</script>
+<div class="alert alert-danger">{{ $message }}</div>
 @enderror
 
 @error('fio')
-<script>alert("{{$message}}");</script>
+<div class="alert alert-danger">{{ $message }}</div>
 @enderror
 
 @error('phone')
-<script>alert("{{$message}}");</script>
+<div class="alert alert-danger">{{ $message }}</div>
 @enderror
 
 @error('email')
-<script>alert("{{$message}}");</script>
+<div class="alert alert-danger">{{ $message }}</div>
 @enderror
 
 <div class="vh2"></div>

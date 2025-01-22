@@ -78,7 +78,7 @@ class PageController extends Controller
             'login'=>'required|unique:users',
             'password'=>'required|min:6',
             'fio'=>'required|regex:/^[А-Яа-я- ]+$/u',
-            'phone'=>'required|regex:/^\+7\d{3}-\d{2}-\d{2}+$/u',
+            'phone'=>'required|regex:/^\+7\d{3}-\d{3}-\d{2}-\d{2}+$/u',
             'email'=>'required|email',
         ];
         $messages = [
