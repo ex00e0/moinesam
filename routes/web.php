@@ -19,4 +19,6 @@ Route::post('/reg', [PageController::class, 'reg'])->name('reg');
 Route::get('/logout', [PageController::class, 'logout'])->name('logout');
 
 
-
+Route::get('/my_appls', [PageController::class, 'my_appls'])->name('my_appls');
+Route::get('/appl', [PageController::class, 'appl'])->name('appl');
+ 

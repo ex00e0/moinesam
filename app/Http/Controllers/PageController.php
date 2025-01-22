@@ -107,13 +107,15 @@ class PageController extends Controller
             Auth::login($user);
             return redirect()->route('my_appls')->withErrors(['message'=>'Вы вошли в профиль!']);
         }
-                
+                 
     }
-    // public function index(){
-    //             $soon = Event::select('*')->limit(3)->orderBy('date', 'ASC')->get();
-    //             $news = News::select('*')->limit(4)->orderBy('created_at')->get();
-    //             return view('index', ['events'=>$soon, 'news' => $news]);
-    //         }
+    public function my_appls(){
+            $soon = Application::select('*')->orderBy('date', 'ASC')->get();
+            return view('my_appls', ['appls'=>$soon,]);
+    }
+    public function appl(){
+        return view('appl');
+}
 // ALL EVENTS ON GENERAL PAGE
 //     public function get_all_events($id=null){
 //         $one_event = null;
