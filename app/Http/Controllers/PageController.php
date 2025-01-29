@@ -57,7 +57,7 @@ class PageController extends Controller
                                     return redirect()->route('my_appls')->withErrors(['message'=>'Вы вошли в профиль!']);
                                 }
                                 else if ($role == 'admin') {
-                                    return redirect()->route('admin_index')->withErrors(['message'=>'Вы вошли в профиль как админ!']);
+                                    return redirect()->route('all_appls')->withErrors(['message'=>'Вы вошли в профиль как админ!']);
                                 }
                             } else {
                                 return back()->withErrors(['password'=>'Неверный пароль!'])->withInput();
@@ -110,12 +110,66 @@ class PageController extends Controller
                  
     }
     public function my_appls(){
-            $soon = Application::select('*')->orderBy('date', 'ASC')->get();
-            return view('my_appls', ['appls'=>$soon,]);
+            $soon = Application::select('*')->where('user_id', Auth::user()->id)->orderBy('date', 'ASC')->get();
+            $count = $soon->count();
+            return view('my_appls', ['appls'=>$soon, 'count' => $count]);
     }
-    public function appl(){
-        return view('appl');
-}
+    public function send_appl(){
+        return view('send_appl');
+    }
+    public function send_appl_db (Request $request) {
+        $data = $request->all();
+        $rules = [
+            'phone'=>'regex:/^\+7\d{3}-\d{3}-\d{2}-\d{2}+$/u',
+        ];
+        $messages = [
+            'phone.regex'=>'Неверный формат телефона',];
+        $validate = Validator::make($data, $rules, $messages);
+        if($validate->fails()){
+            return back()
+            ->withErrors($validate)
+            ->withInput();
+        }
+        else{
+            if ($request->type == 'иная услуга') {
+                $appl = Application::create(['user_id'=>Auth::user()->id,
+                'text'=>$request->text,
+                'phone'=>$request->phone,
+                'type'=>$request->type,
+                'pay'=>$request->pay,
+                'date'=>$request->date,
+                'address'=>$request->address,]);
+            }
+            else {
+                $appl = Application::create(['user_id'=>Auth::user()->id,
+                'phone'=>$request->phone,
+                'type'=>$request->type,
+                'pay'=>$request->pay,
+                'date'=>$request->date,
+                'address'=>$request->address,]);
+            }
+           
+            return redirect()->route('my_appls')->withErrors(['message'=>'Вы отправили заявку!']);
+        }
+
+    }
+
+    public function all_appls () {
+        $soon = Application::selectRaw('applications.*, users.fio')->join('users', 'users.id', '=', 'applications.user_id')->orderBy('date', 'ASC')->get();
+            $count = $soon->count();
+            return view('admin/all_appls', ['appls'=>$soon, 'count' => $count]);
+    }
+
+    public function change_status (Request $request) {
+        if ($request->status == 'отменено') {
+            Application::where('id', $request->id)->update(['status'=>$request->status, 'admin_text'=>$request->admin_text]);
+        }
+        else {
+            Application::where('id', $request->id)->update(['status'=>$request->status,]);
+
+        }
+        return redirect()->route('all_appls')->withErrors(['message'=>'Вы изменили статус!']);
+    }
 // ALL EVENTS ON GENERAL PAGE
 //     public function get_all_events($id=null){
 //         $one_event = null;

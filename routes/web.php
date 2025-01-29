@@ -20,5 +20,12 @@ Route::get('/logout', [PageController::class, 'logout'])->name('logout');
 
 
 Route::get('/my_appls', [PageController::class, 'my_appls'])->name('my_appls');
-Route::get('/appl', [PageController::class, 'appl'])->name('appl');
+Route::get('/send_appl', [PageController::class, 'send_appl'])->name('send_appl');
+Route::post('/send_appl_db', [PageController::class, 'send_appl_db'])->name('send_appl_db');
+
+Route::get('/all_appls', [PageController::class, 'all_appls'])->name('all_appls');
+Route::post('/change_status', [PageController::class, 'change_status'])->name('change_status');
+
+
+
  

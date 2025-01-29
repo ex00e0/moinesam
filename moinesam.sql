@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Янв 22 2025 г., 15:44
+-- Время создания: Янв 29 2025 г., 14:14
 -- Версия сервера: 8.0.30
 -- Версия PHP: 8.1.9
 
@@ -41,6 +41,14 @@ CREATE TABLE `applications` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `applications`
+--
+
+INSERT INTO `applications` (`id`, `user_id`, `text`, `admin_text`, `type`, `pay`, `date`, `address`, `phone`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, NULL, NULL, 'химчистка ковров и мебели', 'банковская карта', '2025-01-08 12:20:00', 'ф', '+7960-381-56-00', 'в работе', '2025-01-29 06:18:01', '2025-01-29 07:45:59'),
+(2, 1, 'text', 'admin_text', 'иная услуга', 'банковская карта', '2025-03-08 12:18:00', 'ф', '+7960-381-56-00', 'отменено', '2025-01-29 06:18:37', '2025-01-29 08:06:01');
 
 -- --------------------------------------------------------
 
@@ -105,7 +113,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `fio`, `phone`, `email`, `login`, `password`, `role`, `created_at`, `updated_at`) VALUES
-(1, 'иванов иван иванович', '+7960-381-56-00', 'ivan@mail.ru', 'ivanivan', '$2y$10$z8d0d/JHaUB91kj.f.5nPOY3qxiiqrdNx.y2526ORLufr5KBXzhMu', 'user', '2025-01-22 07:32:49', '2025-01-22 07:32:49');
+(1, 'иванов иван иванович', '+7960-381-56-00', 'ivan@mail.ru', 'ivanivan', '$2y$10$z8d0d/JHaUB91kj.f.5nPOY3qxiiqrdNx.y2526ORLufr5KBXzhMu', 'user', '2025-01-22 07:32:49', '2025-01-22 07:32:49'),
+(3, 'админ', '+7960-381-56-00', 'admin@admin.ru', 'adminka', '$2y$10$6BKDThJBcy1eGIkH8GaKVO7St/Fj1MXCM8PEnj6a32351GQvT/bwu', 'admin', '2025-01-29 06:30:51', '2025-01-29 06:30:51');
 
 --
 -- Индексы сохранённых таблиц
@@ -147,7 +156,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `applications`
 --
 ALTER TABLE `applications`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `migrations`
@@ -165,7 +174,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц

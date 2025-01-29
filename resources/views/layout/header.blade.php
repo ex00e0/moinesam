@@ -27,9 +27,25 @@
         </li>
         @endguest
         @auth
+        @if (Auth::user()->role == 'admin') 
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('all_appls')}}">Все заявки</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="{{route('logout')}}">Выход</a>
         </li>
+        @else
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('my_appls')}}">Мои заявки</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('send_appl')}}">Подать заявку</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('logout')}}">Выход</a>
+        </li>
+        @endif
+       
         @endauth
       </ul>
     </div>
