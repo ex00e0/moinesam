@@ -28,8 +28,12 @@
     <input type="text" class="form-control" id="exampleInputPassword1" name="phone" required>
   </div>
   <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Дата и время уборки</label>
-    <input type="datetime-local" class="form-control" id="exampleInputEmail1" name="date" required>
+    <label for="exampleInputEmail1" class="form-label">Дата уборки</label>
+    <input type="date" class="form-control" id="exampleInputEmail1" name="date" required min="<?=date('Y-m-d')?>">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Время уборки</label>
+    <input type="time" class="form-control" id="exampleInputEmail1" name="time" required min="09:00:00" max="21:00:00">
   </div>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Вид услуги</label>
